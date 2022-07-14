@@ -16,12 +16,15 @@ SemEval 2017 ScienceIE corpus consists of 500 journal articles evenly distribute
 2. Before passing the input through the model, the lists are converted into integer sequences, and the resulting sequences are padded to ensure that all sequences are the same length.
 3. IOB label scheme is used to generate the output label sequence. To distinguish different type of keywords the output label for each token is appended with correpsonding keyword type. For example, for a TASK type keyword the output label will look like B_Task and I_Task.
   
+Code for data preprocessing can be found in file [Data_Processing.ipynb](https://github.com/ankitagarg26/Keyphrase-Extraction/blob/main/Data_Processing.ipynb)
 
 ### Modelling ###
 
 To train the model, the token and POS tagging sequences obtained after data preprocessing are passed through separate embedding layers. The weighted average of the output, with high weightage to POS Tag, is passed through a Bidirectional LSTM layer of 20 units. The results of the forward LSTM and the backward LSTM are concatenated and fed into a Time Distributed Dense Layer with softmax activation function. The output of the Dense layer is then passed through a CRF layer to predict the output label sequence.
 
 ![image](https://user-images.githubusercontent.com/79797476/178888921-c2a2769d-b11c-4097-a834-b3fd140a834d.png)
+
+Code for model training and testing can be found in file [Bi_LSTM_CRF.ipynb](https://github.com/ankitagarg26/Keyphrase-Extraction/blob/main/Bi_LSTM_CRF.ipynb)
 
 ### Results ###
 
